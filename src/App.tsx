@@ -25,7 +25,6 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const App: React.FC = () => {
   //dark-light mode
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
-
   const CustomTheme = useMemo(
     () =>
       createTheme({

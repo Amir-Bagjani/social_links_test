@@ -2,12 +2,7 @@ import { useContext, useState } from "react";
 import { LinkContext } from "../../context/LinkContext";
 //mui
 import { Box, Button, Modal, Typography } from "@material-ui/core";
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-  alpha,
-} from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme, alpha } from "@material-ui/core/styles";
 import { CssTextField } from "./styles";
 
 //axios
@@ -19,6 +14,7 @@ interface Props {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+//style
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
@@ -74,13 +70,13 @@ const ModalDelete: React.FC<Props> = ({ openModal, setOpenModal }) => {
   const [confirm, setConfirm] = useState<string>(``);
   const { selectLinkId, links } = state;
 
-  const findSocialId = (id: number | string | null): string => {
-    return links.filter(i => i.id === id)[0]?.social_id
-  }
+  const findSocialId = (id: string | number ): string => {
+    return links.filter((i) => i.id === id)[0]?.social_id;
+  };
 
   const handleCancel = (): void => {
-    setOpenModal(false);
     setConfirm(``);
+    setOpenModal(false);
   };
 
   const handleDelete = async () => {
@@ -88,6 +84,7 @@ const ModalDelete: React.FC<Props> = ({ openModal, setOpenModal }) => {
       try {
         await Axios.delete(`http://localhost:3030/socials/${selectLinkId}`);
         dispatch({ type: "DELETE_LINK", payload: selectLinkId });
+        dispatch({ type: "SELECT_ID", payload: 0 });
       } catch (err) {
         console.log(err);
       }
@@ -104,7 +101,8 @@ const ModalDelete: React.FC<Props> = ({ openModal, setOpenModal }) => {
         </Typography>
 
         <Typography component="h5" className={classes.typoDetail}>
-          برای حذف مسیر ارتباطی {findSocialId(selectLinkId)} لطفا کلمه تایید را بنویسید
+          برای حذف مسیر ارتباطی { findSocialId(selectLinkId)} لطفا کلمه تایید را
+          بنویسید
         </Typography>
 
         <CssTextField
@@ -112,6 +110,7 @@ const ModalDelete: React.FC<Props> = ({ openModal, setOpenModal }) => {
           value={confirm}
           variant="outlined"
           fullWidth
+          placeholder="تایید"
           onChange={(e) => setConfirm(e.target.value)}
         />
 

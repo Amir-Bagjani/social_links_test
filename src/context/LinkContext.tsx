@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
 
-type Links = {
+export type Links = {
   id: number | string;
   network: string;
   social_id: string;
@@ -12,14 +12,15 @@ type LinkContextProviderProps = {
 };
 type InitialStateType = {
   links: Links[];
-  selectLinkId: number | string | null;
+  selectLinkId: number | string ;
+  refresh: boolean;
 };
 type ActionType =
   | { type: "FIRST_TIME"; payload: Links[] }
-  | { type: "DELETE_LINK"; payload: number | string | null }
-  | { type: "ADD_LINK"; payload: Links }
+  | { type: "DELETE_LINK"; payload: number | string  }
+  | { type: "ADD_LINK" }
   | { type: "EDIT_LINK"; payload: Links }
-  | { type: "SELECT_ID"; payload: number | string | null };
+  | { type: "SELECT_ID"; payload: number | string  }
 
 type LinkContextType = {
   state: InitialStateType;
@@ -28,7 +29,8 @@ type LinkContextType = {
 
 const initialState: InitialStateType = {
   links: [],
-  selectLinkId: null,
+  selectLinkId: 0,
+  refresh: false
 };
 
 export const LinkContext = createContext({} as LinkContextType);
@@ -39,23 +41,15 @@ export const linkReducer = (state: InitialStateType, action: ActionType) => {
       return { ...state, links: [...action.payload] };
 
     case "DELETE_LINK":
-      return {
-        ...state,
-        links: [...state.links.filter((i) => i.id != action.payload)],
-      };
+      return {...state, links: [...state.links.filter((i) => i.id != action.payload)]};
 
     case "ADD_LINK":
-      return { ...state, links: [...state.links, { ...action.payload }] };
+        //در ویدئو گفته شد که آیدی ندهیم، ناچارا باید عملیات فچ را دوباره انجام بدهیم تا بتوانیم از سرور آیدی را دریافت کنیم
+      return { ...state, refresh: !state.refresh };
 
     case "EDIT_LINK":
-      return {
-        ...state,
-        links: [
-          ...state.links.map((i) =>
-            i.id === action.payload.id ? { ...action.payload } : i
-          ),
-        ],
-      };
+      return {...state, links: [...state.links.map((i) => i.id === action.payload.id ? { ...action.payload } : i)]};
+
     case "SELECT_ID":
       return { ...state, selectLinkId: action.payload };
 
@@ -64,14 +58,11 @@ export const linkReducer = (state: InitialStateType, action: ActionType) => {
   }
 };
 
-export const LinkContextProvider: React.FC<LinkContextProviderProps> = ({
-  children,
-}) => {
+export const LinkContextProvider: React.FC<LinkContextProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(linkReducer, initialState);
 
   useEffect(() => {
     const getData = async () => {
-
       try {
         const res = await Axios.get(`http://localhost:3030/socials`, {
           cancelToken: Axios.CancelToken.source().token,
@@ -88,11 +79,10 @@ export const LinkContextProvider: React.FC<LinkContextProviderProps> = ({
       }
 
     };
-
     getData();
-
     return () => Axios.CancelToken.source().cancel();
-  }, []);
+  }, [state.refresh]);
+
 
   return (
     <>
