@@ -1,12 +1,11 @@
 import { createContext, useState } from "react";
 
-
 type ThemeContextType = {
-    themeMode: string
-    setThemeMode: React.Dispatch<React.SetStateAction<string>>
+  themeMode: string
+  setThemeMode: React.Dispatch<React.SetStateAction<string>>
 }
 type ThemeContextProviderProps = {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const ThemeContext = createContext({} as ThemeContextType);

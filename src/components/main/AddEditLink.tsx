@@ -116,7 +116,6 @@ const initialValues: InitialValuesType = {
                   انصراف
                 </Button>
                 <Button type="submit" variant="contained" className={classes.addButton}>
-                  {/* ویرایش مسیر ارتباطی  {transfer(findSocialId(selectLinkId).network)} */}
                   ویرایش مسیر ارتباطی  {transfer(findSocialId(selectLinkId)?.network)}
                 </Button>
               </Box>

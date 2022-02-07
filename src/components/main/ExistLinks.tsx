@@ -38,7 +38,7 @@ const ExistLinks: React.FC<Prop> = ( { setOpenEdit }) => {
     if(network === "LinkedIn") return "لینکداین"
     return "وبسایت"
   }
-
+  //icon generate
   const icon = (network: string) => {
     if(network === "Instagram") return <Instagram />
     if(network === "Facebook") return <Facebook />
@@ -47,8 +47,6 @@ const ExistLinks: React.FC<Prop> = ( { setOpenEdit }) => {
     if(network === "LinkedIn") return <LinkedIn />
     if(network === "Website") return <Website />
   }
-
-       
 
   return (<>
     <Grid item className={classes.existLinks}>

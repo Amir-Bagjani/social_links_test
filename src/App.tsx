@@ -3,13 +3,10 @@ import { LinkContextProvider } from "./context/LinkContext";
 import { ThemeContext } from "./context/ThemeContext";
 import { createTheme, useMediaQuery } from "@material-ui/core";
 
+//change direction rtl
 import { create } from "jss";
 import rtl from "jss-rtl";
-import {
-  StylesProvider,
-  jssPreset,
-  ThemeProvider,
-} from "@material-ui/core/styles";
+import { StylesProvider, jssPreset, ThemeProvider } from "@material-ui/core/styles";
 
 //font
 import "./theme/fonts/css/iranfont.css";
