@@ -28,7 +28,7 @@ const Layout: React.FC = () => {
               <Close  />
             </IconButton>
           </Box>
-          <Divider className={classes.divider}/>
+          <Divider className={classes.dividerClass}/>
           <Box className={classes.mode}>
             <Typography>Mode</Typography>
             <Box className={classes.modeContainer}>

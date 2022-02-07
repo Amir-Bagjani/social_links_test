@@ -1,7 +1,7 @@
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
-
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => 
+createStyles({
   container: {
     backgroundColor: theme.palette.background.default,
     minHeight: `100vh`,
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: theme.spacing(4),
   },
   opener: {
-    position: `absolute`,
+    position: `fixed`,
     top: `50%`,
     right: 0,
     width: 60,
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: `center`,
     justifyContent: `space-between`,
   },
-  divider: {
+  dividerClass: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
     marginLeft: `-24px`,
@@ -42,8 +42,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   mode: {
     display: `flex`,
     flexDirection: `column`,
-    // alignItems: `center`,
-    // justifyContent: `space-between`,
   },
   light: {
     width: `80px`,
@@ -71,9 +69,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.warning.main,
     transition: `0.4s`,
     
-
     "&:hover": {
-      // color: theme.palette.action.active,
       backgroundColor: theme.palette.action.disabledBackground,
     }
   },
