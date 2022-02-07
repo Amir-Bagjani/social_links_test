@@ -59,10 +59,12 @@ const ExistLinks: React.FC<Prop> = ( { setOpenEdit }) => {
             <Typography component="h6" className={classes.typoSpan}>
               {transfer(item.network)}
             </Typography>
+
             <Typography component="h6" className={classes.typoSpan}>
               <span className={classes.span}>آی دی (ID): </span>
               {item.social_id}
             </Typography>
+
             <Typography component="h6" className={classes.typoSpanL}>
               <span className={classes.span}>لینک : </span>
               {item.social_link}
@@ -71,6 +73,7 @@ const ExistLinks: React.FC<Prop> = ( { setOpenEdit }) => {
             <Button className={classes.editButton} startIcon={<Edit />} onClick={()=>handleEdit(item.id)}>
               ویرایش
             </Button>
+            
             <Button className={classes.deleteButton} startIcon={<Delete />} onClick={() => handleDelete(item.id)}>
               حذف
             </Button>

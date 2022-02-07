@@ -8,7 +8,7 @@ const Content: React.FC = () => {
   return <Box className={classes.container}>
     <Typography gutterBottom variant="h6" component="h1">حساب کاربری</Typography>
     <Breadcrumbs aria-label="breadcrumb" separator=".">
-      <Link color="textPrimary"  >
+      <Link color="textPrimary" >
         خانه
       </Link>
       <Link color="textPrimary" >

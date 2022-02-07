@@ -1,5 +1,6 @@
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { LinkContextProvider } from "./context/LinkContext";
+import { ThemeContext } from "./context/ThemeContext";
 import { createTheme, useMediaQuery } from "@material-ui/core";
 
 import { create } from "jss";
@@ -23,8 +24,9 @@ import "./theme/styles.css";
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 const App: React.FC = () => {
+  const { themeMode } = useContext(ThemeContext);
   //dark-light mode
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
+  const prefersDarkMode = useMediaQuery(`(prefers-color-scheme: ${themeMode})`);
   const CustomTheme = useMemo(
     () =>
       createTheme({
@@ -43,7 +45,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={CustomTheme}>
       <StylesProvider jss={jss}>
         <LinkContextProvider>
-          <Layout />
+            <Layout />
         </LinkContextProvider>
       </StylesProvider>
     </ThemeProvider>

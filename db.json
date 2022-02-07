@@ -2,15 +2,39 @@
   "socials": [
     {
       "network": "Website",
-      "social_id": "سیللبل",
-      "social_link": "یبلسل",
-      "id": "7"
+      "social_id": "ooooo",
+      "social_link": "oooooo",
+      "id": 1
+    },
+    {
+      "network": "Telegram",
+      "social_id": "ghfjgh",
+      "social_link": "hjgk",
+      "id": 3
+    },
+    {
+      "network": "LinkedIn",
+      "social_id": "vncv",
+      "social_link": "vbncv",
+      "id": 4
+    },
+    {
+      "network": "Twitter",
+      "social_id": "لیبلی",
+      "social_link": "لبلیل",
+      "id": 6
+    },
+    {
+      "network": "Instagram",
+      "social_id": "اینستا",
+      "social_link": "اینستا",
+      "id": 7
     },
     {
       "network": "Facebook",
-      "social_id": "@***",
-      "social_link": "111",
-      "id": "6"
+      "social_id": "سیبسیبسی",
+      "social_link": "سیب",
+      "id": 8
     }
   ]
 }

@@ -1,9 +1,11 @@
-import ReactDOM from 'react-dom';
-import App from './App';
+import ReactDOM from "react-dom";
+import App from "./App";
+import { ThemeContextProvider } from "./context/ThemeContext";
 
 ReactDOM.render(
- <App />,
-  document.getElementById('root')
+  <ThemeContextProvider>
+    <App />
+  </ThemeContextProvider>,
+
+  document.getElementById("root")
 );
-
-

@@ -1,5 +1,5 @@
-import Axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
+import Axios from "axios";
 
 export type Links = {
   id: number | string;
@@ -48,7 +48,7 @@ export const linkReducer = (state: InitialStateType, action: ActionType) => {
       return { ...state, refresh: !state.refresh };
 
     case "EDIT_LINK":
-      return {...state, links: [...state.links.map((i) => i.id === action.payload.id ? { ...action.payload } : i)]};
+      return {...state, links: [...state.links.map((i) => i.id === action.payload.id ? {...action.payload } : i)]};
 
     case "SELECT_ID":
       return { ...state, selectLinkId: action.payload };
